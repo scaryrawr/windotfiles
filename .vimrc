@@ -11,7 +11,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'dylanaraps/wal.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ErichdonGubler/vim-sublime-monokai'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'honza/vim-snippets'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
@@ -99,3 +98,5 @@ let g:airline_powerline_fonts = 1
 
 " Vim JavaScript settings
 let g:javascript_plugin_jsdoc = 1
+
+set guifont=Cascadia\ Mono\ PL:h11
