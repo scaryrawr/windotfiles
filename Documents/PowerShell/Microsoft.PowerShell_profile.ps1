@@ -1,4 +1,6 @@
 Import-Module posh-git
+Import-Module oh-my-posh
+Set-Prompt
 
 function Get-CommandSource {
 	$(Get-Command $args).Source
