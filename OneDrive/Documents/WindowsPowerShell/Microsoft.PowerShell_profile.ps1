@@ -19,14 +19,6 @@ else {
 }
 
 $gitroot = $env:GithubLocation
-if (Test-Path $gitroot\jekyll-pwsh\jekyll.psm1) {
-  Import-Module $gitroot\jekyll-pwsh\jekyll.psm1
-}
-
-if (Test-Path $gitroot\addlicense\AddLicense.psm1) {
-  Import-Module $gitroot\addlicense\AddLicense.psm1
-}
-
 if (Test-Path $gitroot\winwal\winwal.psm1) {
   Import-Module $gitroot\winwal\winwal.psm1
 }
