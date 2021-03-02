@@ -1,0 +1,14 @@
+[alias]
+	co = checkout
+[pull]
+	rebase = false
+[core]
+	editor = code-insiders -w
+[difftool "vscode"]
+	cmd = code-insiders -w -d $LOCAL $REMOTE
+[diff]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = code-insiders -w $MERGED
+[merge]
+	tool = vscode
