@@ -1,6 +1,7 @@
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-Prompt
+
 function Get-CommandSource {
 	$(Get-Command $args).Source
 }
@@ -42,3 +43,29 @@ function Update-Config {
 }
 
 Set-Alias -Name config -Value Update-Config
+
+function Invoke-GitHubQuery {
+	param(
+		[string]$Query,
+		[ValidateSet('none', 'Repositories', 'Code', 'Commits', 'Issues', 'Discussions', 'Packages', 'Marketplace', 'Topics', 'Wikis', 'Users')]$Type = 'none',
+		[string]$Language
+	)
+
+	$uri = [System.UriBuilder]::new('https://github.com/search')
+	$params = [System.Web.HttpUtility]::ParseQueryString($uri.Query)
+	if ($Query) {
+		$params.Add('q', $Query)
+	}
+
+	if ($Type -ne 'none') {
+		$params.Add('type', $Type)
+	}
+
+	if ($Language) {
+		$params.Add('l', $Language);
+	}
+
+	$uri.Query = $params.ToString()
+
+	Start-Process $uri.Uri.OriginalString
+}
