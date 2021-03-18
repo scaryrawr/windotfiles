@@ -5,7 +5,7 @@
   "copyFormatting": false,
   "profiles": {
     "defaults": {
-      "fontFace": "Cascadia Code PL",
+      "fontFace": "CaskaydiaCove NF",
       "acrylicOpacity": 0.8,
       "useAcrylic": true,
       "colorScheme": "wal"
