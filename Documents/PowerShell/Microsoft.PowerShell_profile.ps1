@@ -2,8 +2,8 @@ foreach ($mod in @('posh-git', 'oh-my-posh', 'Terminal-Icons')) {
 	if (Get-Module -ListAvailable -Name $mod) {
 		Import-Module $mod
 
-		if (($mod -eq 'oh-my-posh') -and (Test-Path "~/.cache/wal/posh-wal.json")) {
-			Set-PoshPrompt -Theme "~/.cache/wal/posh-wal.json"
+		if (($mod -eq 'oh-my-posh') -and (Test-Path "${HOME}/.cache/wal/posh-wal.json")) {
+			Set-PoshPrompt -Theme "${HOME}/.cache/wal/posh-wal.json"
 		}
 	}
 }
@@ -19,22 +19,25 @@ if (Get-Command nvim -ErrorAction SilentlyContinue) {
 	Set-Alias -Name vi -Value nvim
 	Set-Alias -Name vim -Value nvim
 }
-else {
-	# Just assume if we don't have nvim we have vim... OK?
+elseif (Get-Command vim -ErrorAction SilentlyContinue) {
 	Set-Alias -Name vi -Value vim
 }
 
 $gitroot = $env:GithubLocation
-foreach ($mod in @("$gitroot\jekyll-pwsh\jekyll.psm1", "$gitroot\addlicense\AddLicense.psm1", "$gitroot\winwal\winwal.psm1")) {
+if ([string]::IsNullOrEmpty($gitroot)) {
+	$gitroot = "${HOME}\GitHub"
+}
+
+foreach ($mod in @("${gitroot}\jekyll-pwsh\jekyll.psm1", "${gitroot}\addlicense\AddLicense.psm1", "${gitroot}\winwal\winwal.psm1")) {
 	if (Test-Path -Path $mod) {
 		Import-Module $mod
 	}
 }
 
 # Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+$ChocolateyProfile = "${env:ChocolateyInstall}\helpers\chocolateyProfile.psm1"
 if (Test-Path -Path $ChocolateyProfile) {
-	Import-Module "$ChocolateyProfile"
+	Import-Module "${ChocolateyProfile}"
 }
 
 # Git Dot Files
