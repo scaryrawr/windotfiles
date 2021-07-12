@@ -12,3 +12,5 @@
 	cmd = code-insiders -w $MERGED
 [merge]
 	tool = vscode
+[init]
+	defaultBranch = main
